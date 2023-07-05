@@ -22,7 +22,7 @@ function Products() {
   }, [products]);
 
   return (
-    <div className="container-fluid justify-content-evenly row my-5 mx-auto">
+    <div className="container-fluid row my-5 mx-auto">
       {products.map((product) => {
         return (
           <Product
