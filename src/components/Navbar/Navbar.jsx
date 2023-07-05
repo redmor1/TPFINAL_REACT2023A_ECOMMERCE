@@ -1,3 +1,5 @@
+import { Link, NavLink } from "react-router-dom";
+
 function Navbar() {
   return (
     <nav
@@ -7,9 +9,9 @@ function Navbar() {
     >
       <div className="container-fluid justify-content-around">
         <div className="d-flex">
-          <a className="navbar-brand fw-bold me-4" href="#">
+          <Link className="navbar-brand fw-bold me-4" to={"/"}>
             Ecommerce
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -25,19 +27,18 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarsExample02">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link me-3" aria-current="page" href="#">
+                <NavLink
+                  className="nav-link me-3"
+                  aria-current="page"
+                  to={"/products"}
+                >
                   Shop
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link me-3" href="#">
-                  Stories
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link me-3" href="#">
-                  About
-                </a>
+                <NavLink className="nav-link me-3" to={"/categories"}>
+                  Categories
+                </NavLink>
               </li>
             </ul>
             <form role="search">
@@ -54,14 +55,18 @@ function Navbar() {
         <div>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link me-3" aria-current="page" href="#">
+              <NavLink
+                className="nav-link me-3"
+                aria-current="page"
+                to={"/cart-detail"}
+              >
                 Carrito
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link me-3" href="#">
+              <NavLink className="nav-link me-3" to={"/login"}>
                 Login
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
