@@ -1,2 +1,16 @@
+// @import "../node_modules/bootstrap/scss/_functions";
+// @import "../node_modules/bootstrap/scss/_variables";
+
+// override bootstrap variables
+$dark: #0d0d0d;
+$nav-link-color: #fff;
+$navbar-dark-color: #fff;
+$nav-link-font-size: 17px;
+
+// standard css
+* {
+  font-family: Inter;
+}
+
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
