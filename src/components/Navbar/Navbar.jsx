@@ -5,7 +5,7 @@ function Navbar() {
     <nav
       className="navbar navbar-expand-sm bg-dark py-2"
       data-bs-theme="dark"
-      aria-label="Second navbar example"
+      aria-label="Navbar"
     >
       <div className="container-fluid justify-content-around">
         <div className="d-flex">
