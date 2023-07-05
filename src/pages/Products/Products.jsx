@@ -18,7 +18,7 @@ function Products() {
 
   useEffect(() => {
     getProducts(API_URL);
-  }, [products]);
+  }, []);
 
   return (
     <div className="container-fluid my-5 mx-auto">

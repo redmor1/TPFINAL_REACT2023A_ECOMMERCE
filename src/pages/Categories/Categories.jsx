@@ -17,7 +17,7 @@ function Categories() {
 
   useEffect(() => {
     getCategories(API_URL);
-  }, [categories]);
+  }, []);
 
   return (
     <div className="container-fluid justify-content-evenly row my-5 mx-auto">
