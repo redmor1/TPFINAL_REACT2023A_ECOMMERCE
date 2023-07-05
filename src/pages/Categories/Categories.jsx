@@ -21,16 +21,18 @@ function Categories() {
 
   return (
     <div className="container-fluid justify-content-evenly row my-5 mx-auto">
-      {categories.map((category) => {
-        return (
-          <Category
-            key={category.id}
-            id={category.id}
-            name={category.name}
-            image={category.image}
-          />
-        );
-      })}
+      <div className="row">
+        {categories.map((category) => {
+          return (
+            <Category
+              key={category.id}
+              id={category.id}
+              name={category.name}
+              image={category.image}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
