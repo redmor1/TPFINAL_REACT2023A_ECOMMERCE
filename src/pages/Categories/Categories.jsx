@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import Category from "./components/Category";
+import { API_URL } from "../../constants/API_URL";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
 
-  async function getCategories() {
+  async function getCategories(API_URL) {
     try {
-      const res = await fetch("https://api.escuelajs.co/api/v1/categories/");
+      const res = await fetch(`${API_URL}/categories`);
       const json = await res.json();
       setCategories(json);
     } catch (e) {
@@ -15,7 +16,7 @@ function Categories() {
   }
 
   useEffect(() => {
-    getCategories();
+    getCategories(API_URL);
   }, [categories]);
 
   return (

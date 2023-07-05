@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import Product from "./components/Product";
+import { API_URL } from "../../constants/API_URL";
 
 function Products() {
   const [products, setProducts] = useState([]);
 
-  async function getProducts() {
+  async function getProducts(API_URL) {
     try {
-      const res = await fetch(
-        // TODO //
-        "https://api.escuelajs.co/api/v1/products/?offset=0&limit=10"
-      );
+      const res = await fetch(`${API_URL}/products/?offset=0&limit=10`);
       const json = await res.json();
       setProducts(json);
     } catch (e) {
@@ -18,7 +16,7 @@ function Products() {
   }
 
   useEffect(() => {
-    getProducts();
+    getProducts(API_URL);
   }, [products]);
 
   return (
