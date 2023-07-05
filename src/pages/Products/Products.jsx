@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Product from "./components/Product";
 import { API_URL } from "../../constants/API_URL";
+import Filter from "./components/Filter";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -20,18 +21,23 @@ function Products() {
   }, [products]);
 
   return (
-    <div className="container-fluid row my-5 mx-auto">
-      {products.map((product) => {
-        return (
-          <Product
-            key={product.id}
-            id={product.id}
-            image={product.images}
-            title={product.title}
-            price={product.price}
-          />
-        );
-      })}
+    <div className="container-fluid my-5 mx-auto">
+      <div className="row">
+        <Filter />
+        <div className="col-9 flex-wrap d-flex justify-content-evenly">
+          {products.map((product) => {
+            return (
+              <Product
+                key={product.id}
+                id={product.id}
+                image={product.images}
+                title={product.title}
+                price={product.price}
+              />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
