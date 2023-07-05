@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import Category from "./components/Category";
 import { API_URL } from "../../constants/API_URL";
+import Loader from "../../components/Loader/Loader";
 
 function Categories() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState();
 
   async function getCategories(API_URL) {
     try {
@@ -22,16 +23,20 @@ function Categories() {
   return (
     <div className="container-fluid justify-content-evenly row my-5 mx-auto">
       <div className="row">
-        {categories.map((category) => {
-          return (
-            <Category
-              key={category.id}
-              id={category.id}
-              name={category.name}
-              image={category.image}
-            />
-          );
-        })}
+        {categories ? (
+          categories.map((category) => {
+            return (
+              <Category
+                key={category.id}
+                id={category.id}
+                name={category.name}
+                image={category.image}
+              />
+            );
+          })
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );

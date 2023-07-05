@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Product from "./components/Product";
 import { API_URL } from "../../constants/API_URL";
 import Filter from "./components/Filter";
+import Loader from "../../components/Loader/Loader";
 
 function Products() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
 
   async function getProducts(API_URL) {
     try {
@@ -25,17 +26,21 @@ function Products() {
       <div className="row">
         <Filter />
         <div className="col-9 flex-wrap d-flex justify-content-evenly">
-          {products.map((product) => {
-            return (
-              <Product
-                key={product.id}
-                id={product.id}
-                image={product.images}
-                title={product.title}
-                price={product.price}
-              />
-            );
-          })}
+          {products ? (
+            products.map((product) => {
+              return (
+                <Product
+                  key={product.id}
+                  id={product.id}
+                  image={product.images}
+                  title={product.title}
+                  price={product.price}
+                />
+              );
+            })
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     </div>
