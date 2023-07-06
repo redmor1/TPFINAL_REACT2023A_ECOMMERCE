@@ -1,5 +1,4 @@
 import CategoryList from "./CategoryList";
-import ColorList from "./ColorList";
 
 function Filter() {
   return (
