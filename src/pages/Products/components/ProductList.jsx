@@ -3,7 +3,6 @@ import Product from "./Product";
 function ProductList(props) {
   return (
     <>
-      {console.log(props.products)}
       {props.products.map((product) => {
         return (
           <Product
