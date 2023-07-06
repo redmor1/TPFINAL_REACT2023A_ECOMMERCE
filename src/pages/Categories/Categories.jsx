@@ -1,29 +1,26 @@
-import { useState, useEffect } from "react";
 import Category from "./components/Category";
-import { API_URL } from "../../constants/API_URL";
+import { API_URL, QUERY_KEY_CATEGORIES } from "../../constants/";
 import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
+import fetchData from "../../functions/fetchData";
+import { useQuery } from "react-query";
 
 function Categories() {
-  const [categories, setCategories] = useState();
-
-  async function getCategories(API_URL) {
-    try {
-      const res = await fetch(`${API_URL}/categories`);
-      const json = await res.json();
-      setCategories(json);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  useEffect(() => {
-    getCategories(API_URL);
-  }, []);
+  const {
+    data: categories,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery(QUERY_KEY_CATEGORIES, () => {
+    return fetchData(API_URL, "categories");
+  });
 
   return (
     <div className="container-fluid justify-content-evenly row my-5 mx-auto">
       <div className="row">
-        {categories ? (
+        {isLoading && <Loader />}
+        {isError && <Error />}
+        {isSuccess &&
           categories.map((category) => {
             return (
               // TODO: CategoryList
@@ -34,10 +31,7 @@ function Categories() {
                 image={category.image}
               />
             );
-          })
-        ) : (
-          <Loader />
-        )}
+          })}
       </div>
     </div>
   );
