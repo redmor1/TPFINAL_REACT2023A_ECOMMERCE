@@ -1,4 +1,5 @@
 async function fetchData(API_URL, entityName) {
+  // TODO: deal with pagination
   const res = await fetch(`${API_URL}/${entityName}/?offset=0&limit=10`);
   const json = await res.json();
   if (json.error) {
