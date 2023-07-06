@@ -12,7 +12,7 @@ function CategoryList() {
     isError,
     isSuccess,
   } = useQuery(QUERY_KEY_CATEGORIES, () => {
-    return fetchData(API_URL);
+    return fetchData(API_URL, "categories");
   });
 
   return (
