@@ -1,34 +1,29 @@
-import { useEffect, useState } from "react";
-import { API_URL } from "../../constants/API_URL";
+import { API_URL, QUERY_KEY_PRODUCTS } from "../../constants/";
 import Filter from "./components/Filter";
 import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 import ProductList from "./components/ProductList";
+import { useQuery } from "react-query";
+import fetchData from "../../functions/fetchData";
 
 function Products() {
-  const [products, setProducts] = useState();
-  // const [filterURL, setFilterURL] = useState();
-  const tempPagination = "?offset=0&limit=10";
-
-  async function getProducts(API_URL) {
-    try {
-      const res = await fetch(`${API_URL}/products/${tempPagination}`);
-      const json = await res.json();
-      setProducts(json);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  useEffect(() => {
-    getProducts(API_URL);
-  }, []);
+  const {
+    data: products,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery(QUERY_KEY_PRODUCTS, () => {
+    return fetchData(API_URL, "products");
+  });
 
   return (
     <div className="container-fluid my-5 mx-auto">
       <div className="row">
         <Filter />
         <div className="col-9 flex-wrap d-flex justify-content-evenly">
-          {products ? <ProductList products={products} /> : <Loader />}
+          {isLoading && <Loader />}
+          {isError && <Error />}
+          {isSuccess && <ProductList products={products} />}
         </div>
       </div>
     </div>
