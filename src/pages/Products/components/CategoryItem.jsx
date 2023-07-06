@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function CategoryItem(props) {
-  const [isChecked, setIsChecked] = useState(false);
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const categoryId = searchParams.get("categoryId");
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const categoryId = searchParams.get("categoryId");
-
-    setIsChecked(categoryId === props.id.toString());
-  }, [location.search, props.id]);
+  const [isChecked, setIsChecked] = useState(
+    categoryId === props.id.toString()
+  );
 
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
