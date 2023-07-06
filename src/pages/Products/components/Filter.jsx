@@ -6,7 +6,6 @@ function Filter() {
     <div className="sidebar col-3">
       <h1>Filter</h1>
       <CategoryList />
-      <ColorList />
     </div>
   );
 }
