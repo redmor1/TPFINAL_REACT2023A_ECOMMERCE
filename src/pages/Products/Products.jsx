@@ -6,10 +6,12 @@ import ProductList from "./components/ProductList";
 
 function Products() {
   const [products, setProducts] = useState();
+  // const [filterURL, setFilterURL] = useState();
+  const tempPagination = "?offset=0&limit=10";
 
   async function getProducts(API_URL) {
     try {
-      const res = await fetch(`${API_URL}/products/?offset=0&limit=10`);
+      const res = await fetch(`${API_URL}/products/${tempPagination}`);
       const json = await res.json();
       setProducts(json);
     } catch (e) {
