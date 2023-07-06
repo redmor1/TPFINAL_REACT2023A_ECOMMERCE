@@ -1,30 +1,27 @@
-import { useEffect, useState } from "react";
-import { API_URL } from "../../../constants/API_URL";
+import { useQuery } from "react-query";
+import { API_URL, QUERY_KEY_CATEGORIES } from "../../../constants/";
 import CategoryItem from "./CategoryItem";
+import fetchData from "../../../functions/fetchData";
+import Loader from "../../../components/Loader/Loader";
+import Error from "../../../components/Error/Error";
 
 function CategoryList() {
-  const [categories, setCategories] = useState();
-
-  // TODO: Abstract this function and state into a custom one so i can use it in two places
-  async function getCategories(API_URL) {
-    try {
-      const res = await fetch(`${API_URL}/categories`);
-      const json = await res.json();
-      setCategories(json);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  useEffect(() => {
-    getCategories(API_URL);
+  const {
+    data: categories,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery(QUERY_KEY_CATEGORIES, () => {
+    return fetchData(API_URL);
   });
 
   return (
     <>
       <h2>Categories</h2>
       <ul className="list-group">
-        {categories ? (
+        {isLoading && <Loader />}
+        {isError && <Error />}
+        {isSuccess &&
           categories.map((category) => {
             return (
               <CategoryItem
@@ -33,10 +30,7 @@ function CategoryList() {
                 name={category.name}
               />
             );
-          })
-        ) : (
-          <h1>Loading</h1>
-        )}
+          })}
       </ul>
     </>
   );
