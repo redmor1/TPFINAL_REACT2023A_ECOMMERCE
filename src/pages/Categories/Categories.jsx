@@ -26,6 +26,7 @@ function Categories() {
         {categories ? (
           categories.map((category) => {
             return (
+              // TODO CategoryList
               <Category
                 key={category.id}
                 id={category.id}
