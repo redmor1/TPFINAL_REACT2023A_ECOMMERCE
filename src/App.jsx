@@ -6,9 +6,9 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Categories from "./pages/Categories/Categories";
 import Products from "./pages/Products/Products";
-import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import CreateProduct from "./pages/CreateProduct/CreateProduct";
-import EditProduct from "./pages/EditProduct/EditProduct";
+import ProductDetails from "./pages/Products/ProductDetails/ProductDetails";
+import CreateProduct from "./pages/Products/CreateProduct/CreateProduct";
+import EditProduct from "./pages/Products/EditProduct/EditProduct";
 import CartDetails from "./pages/CartDetails/CartDetails";
 
 function App() {
