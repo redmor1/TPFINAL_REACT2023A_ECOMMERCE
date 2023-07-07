@@ -2,17 +2,19 @@ import Category from "./components/Category";
 import { API_URL, QUERY_KEY_CATEGORIES } from "../../constants/";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
-import fetchData from "../../functions/fetchData";
 import { useQuery } from "react-query";
+import fetchData from "../../functions/fetchData";
+import { useLocation } from "react-router-dom";
 
 function Categories() {
+  const location = useLocation();
   const {
     data: categories,
     isLoading,
     isError,
     isSuccess,
   } = useQuery(QUERY_KEY_CATEGORIES, () => {
-    return fetchData(API_URL, "categories");
+    return fetchData(API_URL, location.pathname);
   });
 
   return (

@@ -22,6 +22,7 @@ function CategoryItem(props) {
         checked={isChecked}
         onChange={handleCheckboxChange}
         id={props.id}
+        name="pepe"
       />
       <label className="form-check-label stretched-link" htmlFor={props.id}>
         {props.name}
