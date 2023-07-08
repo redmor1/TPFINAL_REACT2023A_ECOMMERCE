@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function CategoryList() {
+  // TODO: Refactorizar, dificil de entender a simple vista, podria ser un custom hook
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
