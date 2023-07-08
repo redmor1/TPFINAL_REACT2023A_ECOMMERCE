@@ -4,8 +4,23 @@ import CategoryItem from "./CategoryItem";
 import fetchData from "../../../functions/fetchData";
 import Loader from "../../../components/Loader/Loader";
 import Error from "../../../components/Error/Error";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function CategoryList() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  const categoryId = searchParams.get("categoryId");
+  const [categoryChecked, setCategoryChecked] = useState(categoryId);
+
+  function handleCategoryChecked(event) {
+    const newCategoryId = event.target.value;
+    setCategoryChecked(newCategoryId);
+    searchParams.set("categoryId", newCategoryId);
+    navigate(`?${searchParams.toString()}`);
+  }
+
   const {
     data: categories,
     isLoading,
@@ -25,6 +40,8 @@ function CategoryList() {
           categories.map((category) => {
             return (
               <CategoryItem
+                handleCategoryChecked={handleCategoryChecked}
+                categoryChecked={categoryChecked}
                 key={category.id}
                 id={category.id}
                 name={category.name}
