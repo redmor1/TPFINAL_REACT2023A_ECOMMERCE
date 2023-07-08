@@ -21,15 +21,21 @@ function Products() {
   } = useQuery(QUERY_KEY_PRODUCTS, () => {
     return fetchData(API_URL, location.pathname, filter);
   });
+  // Preguntar al profe si esta bien, este useEffect cambia el state de filter cuando location cambia...
+  // location cambia cuando se hace click en una categoria
+  useEffect(() => {
+    setFilter(location.search);
+  }, [location]);
 
+  // cuando se termina de hacer el setFilter(xq es async) esto ejecuta un refetch de la informacion
   useEffect(() => {
     refetch();
-  }, [location, refetch]);
+  }, [filter]);
 
   return (
     <div className="container-fluid my-5 mx-auto">
       <div className="row">
-        <Filter filter={filter} setFilter={setFilter} />
+        <Filter />
         <div className="col-9 flex-wrap d-flex justify-content-evenly">
           {isLoading && <Loader />}
           {isError && <Error />}
