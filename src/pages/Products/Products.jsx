@@ -21,6 +21,9 @@ function Products() {
   } = useQuery(QUERY_KEY_PRODUCTS, () => {
     return fetchData(API_URL, location.pathname, filter);
   });
+
+  // TODO: Probar si con un if(filter == location.search) puedo deshacerme de un useEffect
+
   // Preguntar al profe si esta bien, este useEffect cambia el state de filter cuando location cambia...
   // location cambia cuando se hace click en una categoria
   useEffect(() => {
