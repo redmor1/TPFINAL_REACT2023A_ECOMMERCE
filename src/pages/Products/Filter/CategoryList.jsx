@@ -33,8 +33,8 @@ function CategoryList() {
 
   return (
     <>
-      <h2>Categories</h2>
-      <ul className="list-group">
+      <h2 className="categories-title fw-bold mb-3">Categories</h2>
+      <ul className="d-flex flex-column p-0">
         {isLoading && <Loader />}
         {isError && <Error />}
         {isSuccess &&

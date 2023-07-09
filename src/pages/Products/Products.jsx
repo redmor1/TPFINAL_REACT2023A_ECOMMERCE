@@ -12,6 +12,8 @@ function Products() {
   const location = useLocation();
   const [filter, setFilter] = useState(location.search);
 
+  // TODO: quizas puedo rehacer metiendo el state filter en useQuery?
+
   const {
     data: products,
     isLoading,
@@ -37,9 +39,9 @@ function Products() {
 
   return (
     <div className="container-fluid my-5 mx-auto">
-      <div className="row">
+      <div className="row justify-content-center">
         <Filter />
-        <div className="col-9 flex-wrap d-flex justify-content-evenly">
+        <div className="col-8 flex-wrap d-flex justify-content-evenly">
           {isLoading && <Loader />}
           {isError && <Error />}
           {isSuccess && <ProductList products={products} />}
