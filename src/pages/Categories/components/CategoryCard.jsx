@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Category(props) {
+function CategoryCard(props) {
   return (
     <div className="card col-2 mx-3 mb-5">
       {/* TODO: Put a placeholder image if props.image leads to broken image... need to fiddle with status code */}
@@ -19,4 +19,4 @@ function Category(props) {
   );
 }
 
-export default Category;
+export default CategoryCard;

@@ -1,10 +1,10 @@
-import Category from "./components/Category";
 import { API_URL, QUERY_KEY_CATEGORIES } from "../../constants/";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { useQuery } from "react-query";
 import fetchData from "../../functions/fetchData";
 import { useLocation } from "react-router-dom";
+import CategoryList from "./components/CategoryList";
 
 function Categories() {
   const location = useLocation();
@@ -22,18 +22,7 @@ function Categories() {
       <div className="row">
         {isLoading && <Loader />}
         {isError && <Error />}
-        {isSuccess &&
-          categories.map((category) => {
-            return (
-              // TODO: CategoryList
-              <Category
-                key={category.id}
-                id={category.id}
-                name={category.name}
-                image={category.image}
-              />
-            );
-          })}
+        {isSuccess && <CategoryList categories={categories} />}
       </div>
     </div>
   );
