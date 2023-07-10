@@ -7,7 +7,7 @@ function Navbar() {
       data-bs-theme="dark"
       aria-label="Navbar"
     >
-      <div className="container-fluid justify-content-around">
+      <div className="container-fluid col-10">
         <div className="d-flex">
           <Link className="navbar-brand fw-bold me-4" to={"/"}>
             Ecommerce
