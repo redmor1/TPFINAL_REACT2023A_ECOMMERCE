@@ -11,7 +11,7 @@ $navbar-dark-color: #fff;
 $nav-link-font-size: 17px;
 $card-spacer-y: 0px;
 $card-spacer-x: 0px;
-$card-title-color: black;
+$card-color: black;
 // TODO: Add rest of font-families
 // standard css
 * {
@@ -19,9 +19,16 @@ $card-title-color: black;
 }
 
 .card-title {
-  font-size: $nav-link-font-size;
   letter-spacing: $ls-040;
   line-height: 28px;
+  font-size: 17px;
+  font-family: Public Sans;
+}
+
+.card-text {
+  font-size: 17px;
+  letter-spacing: $ls-040;
+  font-family: Public Sans;
 }
 
 .filter-title {
@@ -59,6 +66,11 @@ $card-title-color: black;
   line-height: 22px;
   letter-spacing: -0.4px;
   padding: 14px 76px !important;
+}
+
+.col-3-5 {
+  flex: 0 0 29.16667%;
+  max-width: 29.16667%;
 }
 
 // import bootstrap

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Product(props) {
   return (
-    <div className="card col-3 mx-1 mb-5 border-0">
+    <div className="card col-3-5 mx-1 mb-5 border-0">
       <Link to={`/products/${props.id}`} className="btn text-start p-0">
         <img
           // TODO: Put a placeholder image if props.image leads to broken image... need to fiddle with status code
