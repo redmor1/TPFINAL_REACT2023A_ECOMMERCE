@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 function ProductDetails() {
   const { id: productId } = useParams();
 
-  console.log(productId);
   // Colocate state?
   const {
     data: product,
