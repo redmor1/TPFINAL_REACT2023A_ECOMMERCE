@@ -4,15 +4,19 @@ import ProductInfo from "./ProductInfo";
 import { API_URL, QUERY_KEY_PRODUCTS } from "../../../constants";
 import fetchData from "../../../functions/fetchData";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 
 function ProductDetails() {
+  const { id: productId } = useParams();
+
+  console.log(productId);
   // Colocate state?
   const {
     data: product,
     isLoading,
     isError,
     isSuccess,
-  } = useQuery(QUERY_KEY_PRODUCTS, () => {
+  } = useQuery([QUERY_KEY_PRODUCTS, productId], () => {
     return fetchData(API_URL, location.pathname);
   });
 
