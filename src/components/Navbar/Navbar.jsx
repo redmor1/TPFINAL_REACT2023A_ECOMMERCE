@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 function Navbar() {
   return (
     <nav
-      className="navbar navbar-expand-sm bg-dark py-2"
+      className="navbar navbar-expand-sm bg-dark py-2-5"
       data-bs-theme="dark"
       aria-label="Navbar"
     >

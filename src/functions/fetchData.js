@@ -1,5 +1,6 @@
 async function fetchData(API_URL, pathName, search = undefined) {
   // TODO: deal with pagination
+  // console.log("fetchData called with", API_URL, pathName, search);
   let res;
   if (pathName == location.pathname && !search) {
     res = await fetch(`${API_URL}${pathName}/?offset=0&limit=10`);
