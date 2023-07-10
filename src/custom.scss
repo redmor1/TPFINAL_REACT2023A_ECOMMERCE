@@ -53,5 +53,13 @@ $card-title-color: black;
   letter-spacing: -0.4px;
 }
 
+.btn-3 {
+  color: black !important;
+  font-family: Public Sans;
+  line-height: 22px;
+  letter-spacing: -0.4px;
+  padding: 14px 76px !important;
+}
+
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
