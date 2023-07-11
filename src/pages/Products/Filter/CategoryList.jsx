@@ -5,21 +5,20 @@ import fetchData from "../../../functions/fetchData";
 import Loader from "../../../components/Loader/Loader";
 import Error from "../../../components/Error/Error";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function CategoryList() {
+function CategoryList(props) {
   // TODO: Refactorizar, dificil de entender a simple vista, podria ser un custom hook
-  const location = useLocation();
   const navigate = useNavigate();
-  const searchParams = new URLSearchParams(location.search);
-  const categoryId = searchParams.get("categoryId");
+
+  const categoryId = props.searchParams.get("categoryId");
   const [categoryChecked, setCategoryChecked] = useState(categoryId);
 
   function handleCategoryChecked(event) {
     const newCategoryId = event.target.value;
     setCategoryChecked(newCategoryId);
-    searchParams.set("categoryId", newCategoryId);
-    navigate(`?${searchParams.toString()}`);
+    props.searchParams.set("categoryId", newCategoryId);
+    navigate(`?${props.searchParams.toString()}`);
   }
 
   const {
@@ -28,7 +27,7 @@ function CategoryList() {
     isError,
     isSuccess,
   } = useQuery(QUERY_KEY_CATEGORIES, () => {
-    return fetchData(API_URL, "categories");
+    return fetchData(API_URL, "/categories");
   });
 
   return (

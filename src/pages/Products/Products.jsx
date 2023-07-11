@@ -10,7 +10,7 @@ import { useState } from "react";
 
 function Products() {
   const location = useLocation();
-  const [filter, setFilter] = useState(location.search);
+  const [filter, setFilter] = useState();
 
   const {
     data: products,

@@ -5,8 +5,10 @@ function Product(props) {
     <div className="card col-3-5 mx-1 mb-4 border-0">
       <Link to={`/products/${props.id}`} className="btn text-start p-0">
         <img
-          // TODO: Put a placeholder image if props.image leads to broken image... need to fiddle with status code
           src={props.image}
+          onError={(e) => {
+            e.target.src = "https://placehold.co/300x300/EEE/31343C";
+          }}
           className="card-img-top rounded-0"
           alt="..."
         />

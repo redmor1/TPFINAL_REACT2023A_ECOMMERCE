@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 function CategoryCard(props) {
   return (
     <div className="card col-3-5 mx-1 mb-4 border-0">
-      {/* TODO: Put a placeholder image if props.image leads to broken image... need to fiddle with status code */}
       <img
         src={props.image}
         onError={(e) => {
@@ -18,6 +17,7 @@ function CategoryCard(props) {
         <Link
           to={`/products?categoryId=${props.id}`}
           className="btn btn-primary"
+          state={{ categoryId: props.id }}
         >
           Go somewhere
         </Link>

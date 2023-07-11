@@ -1,6 +1,15 @@
+import { useLocation } from "react-router-dom";
 import CategoryList from "./CategoryList";
+import TitleSearch from "./TitleSearch";
+import PriceFilter from "./PriceFilter";
+import PriceRangeFilter from "./PriceRangeFilter";
 
 function Filter() {
+  // Conseguir la URL
+  const location = useLocation();
+  // Dividir la URL en params
+  const searchParams = new URLSearchParams(location.search);
+
   return (
     <div className="sidebar col-2">
       <div className="d-flex align-items-center mb-4">
@@ -9,7 +18,10 @@ function Filter() {
           Clear filters
         </p>
       </div>
-      <CategoryList />
+      <CategoryList searchParams={searchParams} />
+      <TitleSearch searchParams={searchParams} />
+      <PriceFilter searchParams={searchParams} />
+      <PriceRangeFilter searchParams={searchParams} />
     </div>
   );
 }
