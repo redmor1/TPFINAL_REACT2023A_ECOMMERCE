@@ -19,6 +19,14 @@ function ProductDetails() {
     return fetchData(API_URL, location.pathname);
   });
 
+  // TODO: no funciona el error handler cuando la id es incorrecta, el server responde con 400 bad request, el error de peticion si funciona, este no
+  //   {
+  //     "path": "/api/v1/products/100/?offset=0&limit=10",
+  //     "timestamp": "2023-07-11T17:33:24.670Z",
+  //     "name": "EntityNotFoundError",
+  //     "message": "Could not find any entity of type \"Product\" matching: {\n    \"relations\": [\n        \"category\"\n    ],\n    \"where\": {\n        \"id\": 100\n    }\n}"
+  // }
+
   return (
     <>
       <div className="container-fluid my-5 mx-auto">

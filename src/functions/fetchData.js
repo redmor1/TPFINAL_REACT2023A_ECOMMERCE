@@ -9,7 +9,7 @@ async function fetchData(API_URL, pathName, search = undefined) {
     res = await fetch(`${API_URL}${pathName}${search}`);
   }
   const json = await res.json();
-  if (json.error) {
+  if (json.error || res.status == 400) {
     throw new Error(json.error);
   }
 

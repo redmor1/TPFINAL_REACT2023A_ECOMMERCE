@@ -11,6 +11,7 @@ function CategoryList(props) {
   // TODO: Refactorizar, dificil de entender a simple vista, podria ser un custom hook
   const navigate = useNavigate();
 
+  // setear la categoryId que llega desde la page Categories al state categoryChecked
   const categoryId = props.searchParams.get("categoryId");
   const [categoryChecked, setCategoryChecked] = useState(categoryId);
 
