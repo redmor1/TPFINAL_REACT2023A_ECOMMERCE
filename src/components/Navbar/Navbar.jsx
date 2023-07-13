@@ -70,9 +70,7 @@ function Navbar() {
               <NavLink className="nav-link me-3" to={"/login"}>
                 Login
               </NavLink>
-              <NavLink className="nav-link me-3" to={"/register"}>
-                Register
-              </NavLink>
+
               <button
                 className="btn btn-primary"
                 onClick={() => {
@@ -81,6 +79,11 @@ function Navbar() {
               >
                 Logout
               </button>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link me-3" to={"/register"}>
+                Register
+              </NavLink>
             </li>
           </ul>
         </div>
