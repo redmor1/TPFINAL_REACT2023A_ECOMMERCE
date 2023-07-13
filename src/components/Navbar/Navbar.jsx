@@ -1,13 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
+  const auth = useAuth();
+
   return (
     <nav
-      className="navbar navbar-expand-sm bg-dark py-2"
+      className="navbar navbar-expand-sm bg-dark py-2-5"
       data-bs-theme="dark"
       aria-label="Navbar"
     >
-      <div className="container-fluid justify-content-around">
+      <div className="container-fluid col-10">
         <div className="d-flex">
           <Link className="navbar-brand fw-bold me-4" to={"/"}>
             Ecommerce
@@ -66,6 +69,25 @@ function Navbar() {
             <li className="nav-item">
               <NavLink className="nav-link me-3" to={"/login"}>
                 Login
+              </NavLink>
+
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  auth.logout(() => {});
+                }}
+              >
+                Logout
+              </button>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link me-3" to={"/register"}>
+                Register
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link me-3" to={"/products/create"}>
+                Test require auth - products/create
               </NavLink>
             </li>
           </ul>

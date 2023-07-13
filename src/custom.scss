@@ -2,23 +2,115 @@
 // @import "../node_modules/bootstrap/scss/_variables";
 
 // override bootstrap variables
+
+$ls-060: -0.6px;
+$ls-040: -0.4px;
+
 $dark: #0d0d0d;
 $nav-link-color: #fff;
 $navbar-dark-color: #fff;
 $nav-link-font-size: 17px;
 $card-spacer-y: 0px;
 $card-spacer-x: 0px;
-$card-title-color: #000;
+$card-color: black;
+$body-bg: #eff2f6;
 // TODO: Add rest of font-families
 // standard css
 * {
+  font-family: Public Sans;
+}
+
+.nav-link,
+.navbar-brand {
   font-family: Inter;
+  letter-spacing: $ls-060;
 }
 
 .card-title {
-  font-size: $nav-link-font-size;
-  letter-spacing: -0.4px;
+  letter-spacing: $ls-040;
   line-height: 28px;
+  font-size: 17px;
+}
+
+.card-text {
+  font-size: 17px;
+  letter-spacing: $ls-040;
+}
+
+.filter-title {
+  color: black;
+  line-height: 30px;
+  letter-spacing: -0.55px;
+}
+
+.filter-clear {
+  color: #c4c4c4;
+  font-size: 14px;
+  letter-spacing: $ls-040;
+}
+
+.categories-title {
+  color: black;
+  font-size: 14px;
+  letter-spacing: $ls-040;
+}
+
+.form-check-label {
+  color: #000;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: -0.4px;
+}
+
+.btn-3 {
+  color: black !important;
+  line-height: 22px;
+  letter-spacing: -0.4px;
+  padding: 14px 76px !important;
+}
+
+.col-3-5 {
+  flex: 0 0 29.16667%;
+  max-width: 29.16667%;
+}
+
+.py-2-5 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.product-title {
+  color: #000;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: -1.08px;
+}
+
+.product-price {
+  color: #000;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: -0.72px;
+}
+
+.product-description {
+  color: #000;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: -0.51px;
+}
+
+.product-quantity {
+  color: #000;
+  font-family: Inter;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.3px;
+}
+
+.product-buy-button {
+  line-height: 22px;
+  letter-spacing: $ls-040;
 }
 
 // import bootstrap
