@@ -1,37 +1,15 @@
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 function Login() {
-  const navigate = useNavigate();
-
-  const loginMutation = useMutation(
-    (data) => {
-      return fetch("https://api.escuelajs.co/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res);
-        navigate("/", { replace: true });
-      },
-    }
-  );
+  const login = useLogin();
 
   function handleSubmit(event) {
     event.preventDefault();
     let formData = new FormData(event.currentTarget);
     let email = formData.get("email");
     let password = formData.get("password");
-    let userLogin = { email, password };
-
-    loginMutation.mutate(userLogin);
-
-    // mutate something
+    let userData = { email, password };
+    login.mutate(userData);
   }
 
   return (
@@ -72,5 +50,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;

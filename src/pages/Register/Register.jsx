@@ -1,9 +1,10 @@
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 function Register() {
-  const navigate = useNavigate();
+  const login = useLogin();
 
+  // TODO: consider exporting this into useRegister maybe
   const registerMutation = useMutation(
     (data) => {
       return fetch("https://api.escuelajs.co/api/v1/users/", {
@@ -15,8 +16,11 @@ function Register() {
       });
     },
     {
-      onSuccess: () => {
-        navigate("/", { replace: true });
+      onSuccess: (data) => {
+        // take the data it returns and use it to useLogin(which logins the user)
+        data.json().then((res) => {
+          login.mutate(res);
+        });
       },
     }
   );
@@ -31,8 +35,6 @@ function Register() {
     let newUser = { name, email, password, avatar };
 
     registerMutation.mutate(newUser);
-
-    // mutate something
   }
 
   return (
