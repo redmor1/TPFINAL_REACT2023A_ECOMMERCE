@@ -85,6 +85,11 @@ function Navbar() {
                 Register
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link me-3" to={"/products/create"}>
+                Test require auth - products/create
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
