@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function TitleSearch(props) {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.searchParams.set("title", title);
+    props.searchParams.set("title", props.title);
     navigate(`?${props.searchParams.toString()}`);
   }
 
@@ -24,9 +22,9 @@ function TitleSearch(props) {
           type="text"
           placeholder="Search by title"
           aria-label="Search by title"
-          value={title}
+          value={props.title}
           onChange={(e) => {
-            setTitle(e.target.value);
+            props.setTitle(e.target.value);
           }}
         ></input>
         <button className="btn btn-primary">Apply</button>

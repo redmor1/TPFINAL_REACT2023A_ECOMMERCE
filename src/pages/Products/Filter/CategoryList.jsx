@@ -4,21 +4,21 @@ import CategoryItem from "./CategoryItem";
 import fetchData from "../../../functions/fetchData";
 import Loader from "../../../components/Loader/Loader";
 import Error from "../../../components/Error/Error";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CategoryList(props) {
   // TODO: Refactorizar, dificil de entender a simple vista, podria ser un custom hook
   const navigate = useNavigate();
 
-  // setear la categoryId que llega desde la page Categories al state categoryChecked
-  const categoryId = props.searchParams.get("categoryId");
-  const [categoryChecked, setCategoryChecked] = useState(categoryId);
-
   function handleCategoryChecked(event) {
     const newCategoryId = event.target.value;
-    setCategoryChecked(newCategoryId);
-    props.searchParams.set("categoryId", newCategoryId);
+    if (newCategoryId === props.categoryChecked) {
+      props.setCategoryChecked(null);
+      props.searchParams.delete("categoryId");
+    } else {
+      props.setCategoryChecked(newCategoryId);
+      props.searchParams.set("categoryId", newCategoryId);
+    }
     navigate(`?${props.searchParams.toString()}`);
   }
 
@@ -42,7 +42,7 @@ function CategoryList(props) {
             return (
               <CategoryItem
                 handleCategoryChecked={handleCategoryChecked}
-                categoryChecked={categoryChecked}
+                categoryChecked={props.categoryChecked}
                 key={category.id}
                 id={category.id}
                 name={category.name}

@@ -1,16 +1,13 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PriceRangeFilter(props) {
-  const [priceMin, setPriceMin] = useState("");
-  const [priceMax, setPriceMax] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
     props.searchParams.delete("price");
-    props.searchParams.set("price_min", priceMin);
-    props.searchParams.set("price_max", priceMax);
+    props.searchParams.set("price_min", props.priceMin);
+    props.searchParams.set("price_max", props.priceMax);
     navigate(`?${props.searchParams.toString()}`);
   }
 
@@ -27,9 +24,9 @@ function PriceRangeFilter(props) {
           type="number"
           placeholder="Minimum price"
           aria-label="Minimum price"
-          value={priceMin}
+          value={props.priceMin}
           onChange={(e) => {
-            setPriceMin(e.target.value);
+            props.setPriceMin(e.target.value);
           }}
         ></input>
         <input
@@ -37,9 +34,9 @@ function PriceRangeFilter(props) {
           type="number"
           placeholder="Maximum price"
           aria-label="Maximum price"
-          value={priceMax}
+          value={props.priceMax}
           onChange={(e) => {
-            setPriceMax(e.target.value);
+            props.setPriceMax(e.target.value);
           }}
         ></input>
         <button className="btn btn-primary">Apply</button>
