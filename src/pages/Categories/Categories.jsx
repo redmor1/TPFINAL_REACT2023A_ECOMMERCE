@@ -19,7 +19,7 @@ function Categories() {
 
   return (
     <div className="container-fluid justify-content-evenly row my-5 mx-auto">
-      <div className="row">
+      <div className="row justify-content-center col-8">
         {isLoading && <Loader />}
         {isError && <Error />}
         {isSuccess && <CategoryList categories={categories} />}
