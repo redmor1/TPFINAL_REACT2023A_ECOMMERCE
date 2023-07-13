@@ -17,7 +17,6 @@ function CategoryCard(props) {
         <Link
           to={`/products?categoryId=${props.id}`}
           className="btn btn-primary"
-          state={{ categoryId: props.id }}
         >
           Go somewhere
         </Link>
