@@ -1,10 +1,13 @@
 import { useMutation } from "react-query";
 import useAuth from "./useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function useLogin() {
   const navigate = useNavigate();
   const auth = useAuth();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
 
   const loginMutation = useMutation(
     (data) => {
@@ -19,7 +22,7 @@ function useLogin() {
     {
       onSuccess: (userData) => {
         auth.login(userData, () => {
-          navigate("/");
+          navigate(from, { replace: true });
         });
       },
     }

@@ -12,6 +12,8 @@ import CreateProduct from "./pages/Products/CreateProduct/CreateProduct";
 import EditProduct from "./pages/Products/EditProduct/EditProduct";
 import CartDetails from "./pages/CartDetails/CartDetails";
 import { AuthProvider } from "./context/AuthContext";
+import RequireAuth from "./components/RequireAuth";
+import RedirectIfAuthenticated from "./components/RedirectIfAuthenticated";
 
 const queryClient = new QueryClient();
 
@@ -23,13 +25,41 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route
+                path="/login"
+                element={
+                  <RedirectIfAuthenticated>
+                    <Login />
+                  </RedirectIfAuthenticated>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <RedirectIfAuthenticated>
+                    <Register />
+                  </RedirectIfAuthenticated>
+                }
+              />
               <Route path="/categories" element={<Categories />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<ProductDetails />} />
-              <Route path="/products/create" element={<CreateProduct />} />
-              <Route path="/products/edit/:id" element={<EditProduct />} />
+              <Route
+                path="/products/create"
+                element={
+                  <RequireAuth>
+                    <CreateProduct />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/products/edit/:id"
+                element={
+                  <RequireAuth>
+                    <EditProduct />
+                  </RequireAuth>
+                }
+              />
               <Route path="/cart-detail" element={<CartDetails />} />
               <Route path="*" element={<NotFound />} />
             </Route>
