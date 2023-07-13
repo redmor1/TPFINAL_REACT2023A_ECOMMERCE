@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
+  const auth = useAuth();
+
   return (
     <nav
       className="navbar navbar-expand-sm bg-dark py-2-5"
@@ -67,6 +70,13 @@ function Navbar() {
               <NavLink className="nav-link me-3" to={"/login"}>
                 Login
               </NavLink>
+              <button
+                onClick={() => {
+                  auth.logout(() => {});
+                }}
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>
