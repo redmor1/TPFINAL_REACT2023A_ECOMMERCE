@@ -22,6 +22,11 @@ function Register() {
           login.mutate(res);
         });
       },
+    },
+    {
+      onError: () => {
+        // TODO: do something
+      },
     }
   );
 

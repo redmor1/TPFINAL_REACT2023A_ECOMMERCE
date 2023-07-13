@@ -25,6 +25,11 @@ function useLogin() {
           navigate(from, { replace: true });
         });
       },
+    },
+    {
+      onError: () => {
+        // TODO: do something
+      },
     }
   );
 
