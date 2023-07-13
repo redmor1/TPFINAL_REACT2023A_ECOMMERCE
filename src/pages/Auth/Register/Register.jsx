@@ -56,22 +56,24 @@ function Register() {
             <input
               type="text"
               placeholder="Name"
-              className="form-control form-control-lg"
+              className="form-control form-control-lg mb-3"
               name="name"
             ></input>
             <input
               type="email"
               placeholder="Email"
-              className="form-control form-control-lg"
+              className="form-control form-control-lg mb-3"
               name="email"
             ></input>
             <input
               type="password"
               placeholder="Password"
-              className="form-control form-control-lg"
+              className="form-control form-control-lg mb-3"
               name="password"
             ></input>
-            <button type="submit">Register</button>
+            <button type="submit" className="btn btn-primary mb-3">
+              Register
+            </button>
           </form>
         </div>
       </div>

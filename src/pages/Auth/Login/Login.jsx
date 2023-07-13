@@ -26,24 +26,25 @@ function Login() {
             <input
               type="email"
               placeholder="Email"
-              className="form-control form-control-lg"
+              className="form-control form-control-lg mb-3"
               name="email"
             ></input>
             <input
               type="password"
               placeholder="Password"
-              className="form-control form-control-lg"
+              className="form-control form-control-lg mb-3"
               name="password"
             ></input>
-            <button type="submit">Login</button>
+            <button type="submit" className="btn btn-primary mb-3">
+              Login
+            </button>
           </form>
           <div className="d-flex justify-content-between">
             <div>
+              {/* TODO: maybe add logic with localStorage? */}
               <input type="checkbox" id="remember-me"></input>
               <label htmlFor="remember-me">Remember me</label>
             </div>
-
-            <p>Forgot password?</p>
           </div>
         </div>
       </div>
