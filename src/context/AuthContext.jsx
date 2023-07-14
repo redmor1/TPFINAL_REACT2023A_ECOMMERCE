@@ -4,21 +4,23 @@ import { ACCESS_TOKEN } from "../constants/index";
 export let AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(localStorage.getItem("access_token"));
+  const [userToken, setUserToken] = useState(
+    localStorage.getItem("access_token")
+  );
 
   function login(userData, callback) {
-    setUser(userData);
-    localStorage.setItem(ACCESS_TOKEN, JSON.stringify(userData.access_token));
+    setUserToken(userData);
+    localStorage.setItem(ACCESS_TOKEN, JSON.stringify(userData));
     callback();
   }
 
   function logout(callback) {
-    setUser(null);
+    setUserToken(null);
     localStorage.removeItem("access_token");
     callback();
   }
 
-  const value = { user, login, logout };
+  const value = { userToken, login, logout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
