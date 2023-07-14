@@ -14,6 +14,7 @@ import CartDetails from "./pages/CartDetails/CartDetails";
 import { AuthProvider } from "./context/AuthContext";
 import RequireAuth from "./pages/Auth/RequireAuth";
 import RedirectIfAuthenticated from "./pages/Auth/RedirectIfAuthenticated";
+import RequireAdmin from "./pages/Auth/RequireAdmin";
 
 const queryClient = new QueryClient();
 
@@ -48,7 +49,9 @@ function App() {
                 path="/products/create"
                 element={
                   <RequireAuth>
-                    <CreateProduct />
+                    <RequireAdmin>
+                      <CreateProduct />
+                    </RequireAdmin>
                   </RequireAuth>
                 }
               />
@@ -56,7 +59,9 @@ function App() {
                 path="/products/edit/:id"
                 element={
                   <RequireAuth>
-                    <EditProduct />
+                    <RequireAdmin>
+                      <EditProduct />
+                    </RequireAdmin>
                   </RequireAuth>
                 }
               />
