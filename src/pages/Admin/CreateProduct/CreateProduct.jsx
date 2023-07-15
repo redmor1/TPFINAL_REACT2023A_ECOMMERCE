@@ -1,30 +1,7 @@
-import { useMutation } from "react-query";
+import useCreateProduct from "../../../hooks/useCreateProduct";
 
 function CreateProduct() {
-  const createProductMutation = useMutation(
-    (data) => {
-      return fetch("https://api.escuelajs.co/api/v1/products/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }).then((res) => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-        return res.json();
-      });
-    },
-    {
-      onSuccess: () => {},
-    },
-    {
-      onError: () => {
-        // TODO: do something
-      },
-    }
-  );
+  const createProductMutation = useCreateProduct();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -37,7 +14,7 @@ function CreateProduct() {
     if (formData.get("images") == "") {
       images = ["https://placehold.co/300x300/EEE/31343C"];
     } else {
-      images = formData.get("images");
+      images = [formData.get("images")];
     }
     let productData = { title, price, description, images, categoryId };
     createProductMutation.mutate(productData);
@@ -66,12 +43,12 @@ function CreateProduct() {
                 className="form-control form-control-lg mb-3"
                 name="price"
               ></input>
-              <input
-                type="text"
+              <textarea
                 placeholder="Description"
                 className="form-control form-control-lg mb-3"
                 name="description"
-              ></input>
+                rows="5"
+              ></textarea>
               {/* TODO: improve by making it fetch list of categories, then being able to select it */}
               <input
                 type="number"
