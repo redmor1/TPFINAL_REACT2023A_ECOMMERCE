@@ -13,7 +13,6 @@ async function fetchUser(API_URL, pathName, access_token) {
       return { isUserValid: false };
     }
     const json = await res.json();
-    console.log(json);
     return { isUserValid: true, data: json };
   }
 }
