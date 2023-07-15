@@ -20,8 +20,6 @@ function EditProduct() {
     editProductMutation.mutate(productData);
   }
 
-  // mutation product with this id
-
   return (
     <>
       <div className="container-fluid my-5 mx-auto">
