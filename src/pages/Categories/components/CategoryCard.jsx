@@ -39,7 +39,7 @@ function CategoryCard(props) {
             Go somewhere
           </Link>
           <button onClick={handleClick} className="btn btn-danger">
-            Eliminar categoria
+            Delete category
           </button>
         </div>
       </div>

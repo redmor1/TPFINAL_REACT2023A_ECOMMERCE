@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "react-query";
-import { QUERY_KEY_CATEGORIES } from "../constants";
+import { QUERY_KEY_PRODUCTS } from "../constants";
 
-function useDeleteCategory() {
+function useDeleteProduct() {
   const queryClient = useQueryClient();
-  const deleteCategoryMutation = useMutation(
+  const deleteProductMutation = useMutation(
     (id) => {
-      return fetch(`https://api.escuelajs.co/api/v1/categories/${id}`, {
+      return fetch(`https://api.escuelajs.co/api/v1/products/${id}`, {
         method: "DELETE",
       }).then((res) => {
         if (!res.ok) {
@@ -17,17 +17,15 @@ function useDeleteCategory() {
     {
       onSuccess: () => {
         console.log("item eliminado pa");
-        queryClient.invalidateQueries(QUERY_KEY_CATEGORIES);
+        queryClient.invalidateQueries(QUERY_KEY_PRODUCTS);
       },
     },
     {
-      onError: () => {
-        // TODO: do something
-      },
+      onError: () => {},
     }
   );
 
-  return deleteCategoryMutation;
+  return deleteProductMutation;
 }
 
-export default useDeleteCategory;
+export default useDeleteProduct;
