@@ -17,7 +17,12 @@ function useLogin() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }).then((res) => res.json());
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      });
     },
     {
       onSuccess: (userData) => {

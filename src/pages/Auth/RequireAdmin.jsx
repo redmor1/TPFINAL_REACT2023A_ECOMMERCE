@@ -2,13 +2,16 @@ import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 function RequireAdmin({ children }) {
-  //   const auth = useAuth();
-  //   const location = useLocation();
+  const auth = useAuth();
+  const location = useLocation();
 
-  // TODO: check the user role using auth
-  // if () {
-  //   return <Navigate to="/login" state={{ from: location }} replace />;
-  // }
+  if (auth.isLoading) {
+    return null;
+  }
+
+  if (auth.userInfo.isUserValid && auth.userInfo.data.role != "admin") {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
   return children;
 }

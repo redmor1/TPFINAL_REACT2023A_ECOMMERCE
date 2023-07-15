@@ -5,7 +5,11 @@ function RedirectIfAuthenticated({ children }) {
   const auth = useAuth();
   const location = useLocation();
 
-  if (auth.userToken) {
+  if (auth.isLoading) {
+    return null;
+  }
+
+  if (auth.userInfo && auth.userInfo.isUserValid) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
