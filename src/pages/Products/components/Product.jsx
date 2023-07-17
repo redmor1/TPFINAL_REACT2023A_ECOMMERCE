@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useDeleteProduct from "../../../hooks/useDeleteProduct";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import Modal from "../../../components/Modal";
 
 function Product(props) {
   const auth = useAuth();
+  const [showModal, setShowModal] = useState(false);
 
   const deleteProductMutation = useDeleteProduct();
 
   function handleClick() {
-    deleteProductMutation.mutate(props.id);
+    setShowModal(!showModal);
   }
 
   if (
@@ -38,6 +42,15 @@ function Product(props) {
         <button onClick={handleClick} className="btn btn-danger">
           Delete product
         </button>
+        {showModal &&
+          createPortal(
+            <Modal
+              setShowModal={setShowModal}
+              deleteItem={deleteProductMutation}
+              id={props.id}
+            />,
+            document.body
+          )}
       </div>
     );
   } else {

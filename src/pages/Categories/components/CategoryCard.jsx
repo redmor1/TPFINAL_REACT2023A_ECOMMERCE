@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useDeleteCategory from "../../../hooks/useDeleteCategory";
+import { createPortal } from "react-dom";
+import { useState } from "react";
+import Modal from "../../../components/Modal";
 
 function CategoryCard(props) {
   const auth = useAuth();
+  const [showModal, setShowModal] = useState(false);
 
   const deleteCategoryMutation = useDeleteCategory();
 
   function handleClick() {
-    deleteCategoryMutation.mutate(props.id);
+    setShowModal(!showModal);
   }
 
   if (
@@ -41,6 +45,15 @@ function CategoryCard(props) {
           <button onClick={handleClick} className="btn btn-danger">
             Delete category
           </button>
+          {showModal &&
+            createPortal(
+              <Modal
+                setShowModal={setShowModal}
+                deleteItem={deleteCategoryMutation}
+                id={props.id}
+              />,
+              document.body
+            )}
         </div>
       </div>
     );
