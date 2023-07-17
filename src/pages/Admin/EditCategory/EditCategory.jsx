@@ -13,7 +13,9 @@ function EditCategory() {
     let formData = new FormData(event.currentTarget);
     let name = formData.get("name");
     let image = formData.get("image");
-    let categoryData = { name, image };
+    let categoryData = {};
+    if (name != "") categoryData.name = name;
+    if (image != "") categoryData.image = image;
     editCategoryMutation.mutate(categoryData);
   }
 

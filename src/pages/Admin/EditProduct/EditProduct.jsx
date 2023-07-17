@@ -21,7 +21,14 @@ function EditProduct() {
     } else {
       images = [formData.get("images")];
     }
-    let productData = { title, price, description, images, categoryId };
+    let productData = {};
+
+    if (title !== "") productData.title = title;
+    if (price !== "") productData.price = price;
+    if (description !== "") productData.description = description;
+    if (categoryId !== "") productData.categoryId = categoryId;
+    if (images !== "") productData.images = images;
+
     editProductMutation.mutate(productData);
   }
 
