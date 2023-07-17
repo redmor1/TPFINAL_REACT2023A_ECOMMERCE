@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 
-function useCreateCategory() {
+function useCreateCategory(setError, setSuccess) {
   const createCategoryMutation = useMutation(
     (data) => {
       return fetch("https://api.escuelajs.co/api/v1/categories/", {
@@ -11,17 +11,20 @@ function useCreateCategory() {
         body: JSON.stringify(data),
       }).then((res) => {
         if (!res.ok) {
+          setError(res.statusText);
           throw new Error(res.statusText);
         }
         return res.json();
       });
     },
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        setSuccess("Product created successfully");
+      },
     },
     {
-      onError: () => {
-        // TODO: do something
+      onError: (json) => {
+        setError(json.message);
       },
     }
   );

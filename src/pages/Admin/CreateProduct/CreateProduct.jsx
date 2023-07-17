@@ -1,7 +1,12 @@
+import { useState } from "react";
 import useCreateProduct from "../../../hooks/useCreateProduct";
+import Alert from "../../../components/Alert";
 
 function CreateProduct() {
-  const createProductMutation = useCreateProduct();
+  const [error, setError] = useState();
+  const [success, setSuccess] = useState();
+
+  const createProductMutation = useCreateProduct(setError, setSuccess);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -25,6 +30,8 @@ function CreateProduct() {
       <div className="container-fluid my-5 mx-auto">
         <div className="row justify-content-center">
           <div className="col-8 d-flex flex-column justify-content-center p-4 bg-white">
+            {success && <Alert alertText={success} state={"success"} />}
+            {!success && error && <Alert alertText={error} state={"error"} />}
             <h1 className="mt-0">Create a product</h1>
             <form
               onSubmit={(e) => {

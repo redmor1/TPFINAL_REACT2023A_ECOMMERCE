@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { useParams } from "react-router-dom";
 
-function useEditCategory() {
+function useEditCategory(setError, setSuccess) {
   const { id } = useParams();
   const editCategoryMutation = useMutation(
     (data) => {
@@ -13,17 +13,20 @@ function useEditCategory() {
         body: JSON.stringify(data),
       }).then((res) => {
         if (!res.ok) {
+          setError(res.statusText);
           throw new Error(res.statusText);
         }
         return res.json();
       });
     },
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        setSuccess("Category edited successfully");
+      },
     },
     {
-      onError: () => {
-        // TODO: do something
+      onError: (json) => {
+        setError(json.message);
       },
     }
   );

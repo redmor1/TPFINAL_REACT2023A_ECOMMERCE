@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 
-function useCreateProduct() {
+function useCreateProduct(setError, setSuccess) {
   const createProductMutation = useMutation(
     (data) => {
       return fetch("https://api.escuelajs.co/api/v1/products/", {
@@ -11,17 +11,20 @@ function useCreateProduct() {
         body: JSON.stringify(data),
       }).then((res) => {
         if (!res.ok) {
+          setError(res.statusText);
           throw new Error(res.statusText);
         }
         return res.json();
       });
     },
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        setSuccess("Product created successfully");
+      },
     },
     {
-      onError: () => {
-        // TODO: do something
+      onError: (json) => {
+        setError(json.message);
       },
     }
   );
