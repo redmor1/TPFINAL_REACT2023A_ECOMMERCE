@@ -20,6 +20,9 @@ function Modal(props) {
               type="button"
               className="btn-close"
               aria-label="Close"
+              onClick={() => {
+                props.setShowModal(false);
+              }}
             ></button>
           </div>
           <div className="modal-body">
