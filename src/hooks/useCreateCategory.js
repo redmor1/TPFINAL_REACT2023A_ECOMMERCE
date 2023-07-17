@@ -19,7 +19,7 @@ function useCreateCategory(setError, setSuccess) {
     },
     {
       onSuccess: () => {
-        setSuccess("Product created successfully");
+        setSuccess("Category created successfully");
       },
     },
     {

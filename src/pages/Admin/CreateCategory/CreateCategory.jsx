@@ -24,7 +24,7 @@ function CreateCategory() {
           <div className="col-8 d-flex flex-column justify-content-center p-4 bg-white">
             {success && <Alert alertText={success} state={"success"} />}
             {!success && error && <Alert alertText={error} state={"error"} />}
-            <h1 className="mt-0">Create a product</h1>
+            <h1 className="mt-0">Create a category</h1>
             <form
               onSubmit={(e) => {
                 handleSubmit(e);
