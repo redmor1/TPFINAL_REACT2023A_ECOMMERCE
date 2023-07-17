@@ -1,7 +1,11 @@
+import { useState } from "react";
+import Alert from "../../../components/Alert";
 import useLogin from "../../../hooks/useLogin";
 
 function Login() {
-  const login = useLogin();
+  const [Error, setError] = useState();
+
+  const login = useLogin(setError);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -14,6 +18,7 @@ function Login() {
 
   return (
     <div className="container-fluid my-5 mx-auto">
+      {Error && <Alert alertText={Error} />}
       <div className="row justify-content-center">
         <div className="col-8 d-flex flex-column justify-content-center p-4 bg-white">
           <h1 className="mt-0">Welcome Back</h1>
