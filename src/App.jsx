@@ -8,12 +8,16 @@ import Register from "./pages/Auth/Register/Register";
 import Categories from "./pages/Categories/Categories";
 import Products from "./pages/Products/Products";
 import ProductDetails from "./pages/Products/ProductDetails/ProductDetails";
-import CreateProduct from "./pages/Products/CreateProduct/CreateProduct";
-import EditProduct from "./pages/Products/EditProduct/EditProduct";
+import CreateProduct from "./pages/Admin/CreateProduct/CreateProduct";
+import CreateCategory from "./pages/Admin/CreateCategory/CreateCategory";
+import EditCategory from "./pages/Admin/EditCategory/EditCategory";
+import EditProduct from "./pages/Admin/EditProduct/EditProduct";
 import CartDetails from "./pages/CartDetails/CartDetails";
 import { AuthProvider } from "./context/AuthContext";
 import RequireAuth from "./pages/Auth/RequireAuth";
 import RedirectIfAuthenticated from "./pages/Auth/RedirectIfAuthenticated";
+import RequireAdmin from "./pages/Auth/RequireAdmin";
+import Admin from "./pages/Admin/Admin";
 
 const queryClient = new QueryClient();
 
@@ -42,13 +46,35 @@ function App() {
                 }
               />
               <Route path="/categories" element={<Categories />} />
+              <Route
+                path="/categories/create"
+                element={
+                  <RequireAuth>
+                    <RequireAdmin>
+                      <CreateCategory />
+                    </RequireAdmin>
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/categories/edit/:id"
+                element={
+                  <RequireAuth>
+                    <RequireAdmin>
+                      <EditCategory />
+                    </RequireAdmin>
+                  </RequireAuth>
+                }
+              />
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<ProductDetails />} />
               <Route
                 path="/products/create"
                 element={
                   <RequireAuth>
-                    <CreateProduct />
+                    <RequireAdmin>
+                      <CreateProduct />
+                    </RequireAdmin>
                   </RequireAuth>
                 }
               />
@@ -56,11 +82,23 @@ function App() {
                 path="/products/edit/:id"
                 element={
                   <RequireAuth>
-                    <EditProduct />
+                    <RequireAdmin>
+                      <EditProduct />
+                    </RequireAdmin>
                   </RequireAuth>
                 }
               />
               <Route path="/cart-detail" element={<CartDetails />} />
+              <Route
+                path="/admin"
+                element={
+                  <RequireAuth>
+                    <RequireAdmin>
+                      <Admin />
+                    </RequireAdmin>
+                  </RequireAuth>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

@@ -4,7 +4,7 @@ async function fetchData(API_URL, pathName, search = undefined) {
 
   let res;
   if (location.pathname && !search) {
-    res = await fetch(`${API_URL}${pathName}/?offset=0&limit=10`);
+    res = await fetch(`${API_URL}${pathName}`);
   } else if (search) {
     res = await fetch(`${API_URL}${pathName}${search}`);
   }

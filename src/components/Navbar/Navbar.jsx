@@ -66,30 +66,40 @@ function Navbar() {
                 Carrito
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link me-3" to={"/login"}>
-                Login
-              </NavLink>
-
-              <button
-                className="btn btn-primary"
-                onClick={() => {
-                  auth.logout(() => {});
-                }}
-              >
-                Logout
-              </button>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link me-3" to={"/register"}>
-                Register
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link me-3" to={"/products/create"}>
-                Test require auth - products/create
-              </NavLink>
-            </li>
+            {!auth.userInfo || !auth.userInfo.isUserValid ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link me-3" to={"/login"}>
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link me-3" to={"/register"}>
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                {auth.userInfo.data.role === "admin" && (
+                  <li className="nav-item">
+                    <NavLink className="nav-link me-3" to={"/admin"}>
+                      Admin
+                    </NavLink>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      auth.logout(() => {});
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
-function RedirectIfAuthenticated({ children }) {
+function RequireAdmin({ children }) {
   const auth = useAuth();
   const location = useLocation();
 
@@ -9,11 +9,11 @@ function RedirectIfAuthenticated({ children }) {
     return null;
   }
 
-  if (auth.userInfo && auth.userInfo.isUserValid) {
-    return <Navigate to="/" state={{ from: location }} replace />;
+  if (auth.userInfo.isUserValid && auth.userInfo.data.role != "admin") {
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return children;
 }
 
-export default RedirectIfAuthenticated;
+export default RequireAdmin;

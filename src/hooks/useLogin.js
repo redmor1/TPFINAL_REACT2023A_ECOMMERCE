@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import useAuth from "./useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function useLogin() {
+function useLogin(setError) {
   const navigate = useNavigate();
   const auth = useAuth();
   const location = useLocation();
@@ -17,7 +17,13 @@ function useLogin() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      }).then((res) => res.json());
+      }).then((res) => {
+        if (!res.ok) {
+          setError(res.statusText);
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      });
     },
     {
       onSuccess: (userData) => {
@@ -27,8 +33,8 @@ function useLogin() {
       },
     },
     {
-      onError: () => {
-        // TODO: do something
+      onError: (json) => {
+        setError(json.message);
       },
     }
   );
