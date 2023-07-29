@@ -1,9 +1,15 @@
 import { useState } from "react";
+import useCart from "../../../hooks/useCart";
 
 function ProductInfo(props) {
+  const cart = useCart();
+
   const [quantity, setQuantity] = useState(1);
 
-  function handleBuy() {}
+  function handleBuy() {
+    props.product.quantity = quantity;
+    cart.addProduct(props.product);
+  }
 
   return (
     <>
