@@ -1,4 +1,16 @@
+import { useState } from "react";
+import useCart from "../../../hooks/useCart";
+
 function ProductInfo(props) {
+  const cart = useCart();
+
+  const [quantity, setQuantity] = useState(1);
+
+  function handleBuy() {
+    props.product.quantity = quantity;
+    cart.addProduct(props.product);
+  }
+
   return (
     <>
       <div className="col-5 me-3">
@@ -16,11 +28,18 @@ function ProductInfo(props) {
           <button
             type="button"
             className="col-8 btn border-1 border-black rounded-0 fw-semibold btn-3 me-3 bg-dark text-white fw-semibold product-buy-button"
+            onClick={handleBuy}
           >
-            Add to Cart - ${props.product.price}
+            Add to Cart - ${props.product.price * quantity}
           </button>
           <div className="border border-1 border-black d-flex align-items-center justify-content-space-between">
-            <button className="btn ps-2">
+            <button
+              className="btn ps-2"
+              onClick={() => {
+                setQuantity(quantity - 1);
+              }}
+              disabled={quantity === 0}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -38,8 +57,13 @@ function ProductInfo(props) {
                 </g>
               </svg>
             </button>
-            <p className="lh-1 mb-0 product-quantity mx-1">1</p>
-            <button className="btn pe-2">
+            <p className="lh-1 mb-0 product-quantity mx-1">{quantity}</p>
+            <button
+              className="btn pe-2"
+              onClick={() => {
+                setQuantity(quantity + 1);
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

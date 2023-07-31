@@ -18,6 +18,7 @@ import RequireAuth from "./pages/Auth/RequireAuth";
 import RedirectIfAuthenticated from "./pages/Auth/RedirectIfAuthenticated";
 import RequireAdmin from "./pages/Auth/RequireAdmin";
 import Admin from "./pages/Admin/Admin";
+import { CartProvider } from "./context/CartContext";
 
 const queryClient = new QueryClient();
 
@@ -25,84 +26,86 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/login"
-                element={
-                  <RedirectIfAuthenticated>
-                    <Login />
-                  </RedirectIfAuthenticated>
-                }
-              />
-              <Route
-                path="/register"
-                element={
-                  <RedirectIfAuthenticated>
-                    <Register />
-                  </RedirectIfAuthenticated>
-                }
-              />
-              <Route path="/categories" element={<Categories />} />
-              <Route
-                path="/categories/create"
-                element={
-                  <RequireAuth>
-                    <RequireAdmin>
-                      <CreateCategory />
-                    </RequireAdmin>
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/categories/edit/:id"
-                element={
-                  <RequireAuth>
-                    <RequireAdmin>
-                      <EditCategory />
-                    </RequireAdmin>
-                  </RequireAuth>
-                }
-              />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetails />} />
-              <Route
-                path="/products/create"
-                element={
-                  <RequireAuth>
-                    <RequireAdmin>
-                      <CreateProduct />
-                    </RequireAdmin>
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/products/edit/:id"
-                element={
-                  <RequireAuth>
-                    <RequireAdmin>
-                      <EditProduct />
-                    </RequireAdmin>
-                  </RequireAuth>
-                }
-              />
-              <Route path="/cart-detail" element={<CartDetails />} />
-              <Route
-                path="/admin"
-                element={
-                  <RequireAuth>
-                    <RequireAdmin>
-                      <Admin />
-                    </RequireAdmin>
-                  </RequireAuth>
-                }
-              />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <CartProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/login"
+                  element={
+                    <RedirectIfAuthenticated>
+                      <Login />
+                    </RedirectIfAuthenticated>
+                  }
+                />
+                <Route
+                  path="/register"
+                  element={
+                    <RedirectIfAuthenticated>
+                      <Register />
+                    </RedirectIfAuthenticated>
+                  }
+                />
+                <Route path="/categories" element={<Categories />} />
+                <Route
+                  path="/categories/create"
+                  element={
+                    <RequireAuth>
+                      <RequireAdmin>
+                        <CreateCategory />
+                      </RequireAdmin>
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/categories/edit/:id"
+                  element={
+                    <RequireAuth>
+                      <RequireAdmin>
+                        <EditCategory />
+                      </RequireAdmin>
+                    </RequireAuth>
+                  }
+                />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:id" element={<ProductDetails />} />
+                <Route
+                  path="/products/create"
+                  element={
+                    <RequireAuth>
+                      <RequireAdmin>
+                        <CreateProduct />
+                      </RequireAdmin>
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/products/edit/:id"
+                  element={
+                    <RequireAuth>
+                      <RequireAdmin>
+                        <EditProduct />
+                      </RequireAdmin>
+                    </RequireAuth>
+                  }
+                />
+                <Route path="/cart-detail" element={<CartDetails />} />
+                <Route
+                  path="/admin"
+                  element={
+                    <RequireAuth>
+                      <RequireAdmin>
+                        <Admin />
+                      </RequireAdmin>
+                    </RequireAuth>
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

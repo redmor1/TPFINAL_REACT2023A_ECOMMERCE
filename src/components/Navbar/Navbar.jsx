@@ -66,6 +66,7 @@ function Navbar() {
                 Carrito
               </NavLink>
             </li>
+            {/* TODO: simplificar, extraer a una funcion */}
             {!auth.userInfo || !auth.userInfo.isUserValid ? (
               <>
                 <li className="nav-item">
