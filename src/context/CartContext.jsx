@@ -1,22 +1,20 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext } from "react";
 
 export let CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const totalPrice = calculateTotalPrice(cart);
 
-  function calculateTotalPrice() {
+  console.log(totalPrice);
+
+  function calculateTotalPrice(cart) {
     const total = cart.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
-    setTotalPrice(total);
+    return total;
   }
-
-  useEffect(() => {
-    calculateTotalPrice();
-  }, [cart]);
 
   function addProduct(product) {
     const productExists = cart.find((item) => item.id === product.id);
