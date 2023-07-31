@@ -6,8 +6,6 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const totalPrice = calculateTotalPrice(cart);
 
-  console.log(totalPrice);
-
   function calculateTotalPrice(cart) {
     const total = cart.reduce(
       (acc, item) => acc + item.price * item.quantity,
