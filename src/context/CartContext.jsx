@@ -38,6 +38,32 @@ export function CartProvider({ children }) {
     setCart([]);
   }
 
-  const value = { addProduct, removeProduct, clearCart, cart, totalPrice };
+  function addQuantity(id) {
+    setCart(
+      cart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  }
+
+  function removeQuantity(id) {
+    setCart(
+      cart.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(0, item.quantity - 1) }
+          : item
+      )
+    );
+  }
+
+  const value = {
+    addProduct,
+    removeProduct,
+    clearCart,
+    cart,
+    totalPrice,
+    addQuantity,
+    removeQuantity,
+  };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
