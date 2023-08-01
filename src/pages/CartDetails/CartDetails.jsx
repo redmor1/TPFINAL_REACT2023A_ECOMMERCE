@@ -1,9 +1,16 @@
+import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import CartProduct from "./CartProduct";
 
 function CartDetails() {
-  const { cart, totalPrice, removeProduct, addQuantity, removeQuantity } =
-    useCart();
+  const {
+    cart,
+    totalPrice,
+    removeProduct,
+    addQuantity,
+    removeQuantity,
+    clearCart,
+  } = useCart();
 
   return (
     <>
@@ -23,6 +30,15 @@ function CartDetails() {
               );
             })}
             <h5 className="my-3">Checkout price: ${totalPrice}</h5>
+            <Link
+              to={`/checkout`}
+              className="btn btn-primary"
+              onClick={() => {
+                clearCart();
+              }}
+            >
+              Checkout
+            </Link>
           </div>
         </div>
       </div>

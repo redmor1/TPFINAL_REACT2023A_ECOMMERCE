@@ -4,7 +4,7 @@ function CartProduct(props) {
       <img
         src={props.product.images}
         onError={(e) => {
-          e.target.src = "https://placehold.co/300x300/EEE/31343C";
+          e.target.src = "https://placehold.co/130x130/EEE/31343C";
         }}
         className="card-img me-4"
         style={{ width: "130px" }}
