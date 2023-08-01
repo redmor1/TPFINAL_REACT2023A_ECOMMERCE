@@ -19,6 +19,7 @@ import RedirectIfAuthenticated from "./pages/Auth/RedirectIfAuthenticated";
 import RequireAdmin from "./pages/Auth/RequireAdmin";
 import Admin from "./pages/Admin/Admin";
 import { CartProvider } from "./context/CartContext";
+import Checkout from "./pages/Checkout/Checkout";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ function App() {
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route
                   path="/login"
                   element={
