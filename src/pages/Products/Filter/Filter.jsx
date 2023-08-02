@@ -43,12 +43,12 @@ function Filter() {
   }
 
   return (
-    <div className="sidebar col-2">
-      <div className="d-flex align-items-center mb-4">
+    <div className="sidebar col-xxl-2 col-lg-3 col-md-10 col-sm-10">
+      <div className="d-flex align-items-center mb-4 justify-content-between">
         <h4 className="fw-semibold filter-title me-3 mb-0 lh-1">Filter</h4>
         <button
           onClick={handleClearFilters}
-          className="btn filter-clear text-decoration-underline mb-0 lh-1"
+          className="filter-clear text-decoration-underline mb-0 lh-1"
         >
           Clear filters
         </button>

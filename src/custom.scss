@@ -13,7 +13,7 @@ $nav-link-font-size: 17px;
 $card-spacer-y: 0px;
 $card-spacer-x: 0px;
 $card-color: black;
-$body-bg: #eff2f6;
+$body-bg: #ffffff;
 // TODO: Add rest of font-families
 // standard css
 * {
@@ -47,6 +47,8 @@ $body-bg: #eff2f6;
   color: #c4c4c4;
   font-size: 14px;
   letter-spacing: $ls-040;
+  background-color: #ffffff;
+  border: 0px;
 }
 
 .filters-title {
@@ -123,5 +125,43 @@ $body-bg: #eff2f6;
   font-size: 14px;
 }
 
+.form-control {
+  background-color: hsl(214, 28%, 99%);
+}
+
+.form-control:focus {
+  border-color: rgb(201, 201, 201);
+  box-shadow: 0 0 0 0;
+  background-color: hsl(214, 28%, 99%);
+}
+
 .button-categories.active {
 }
+
+.shop-title {
+  color: #fff;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px; /* 133.333% */
+  letter-spacing: -1.08px;
+}
+
+.shop-description {
+  color: #fff;
+
+  /* Paragraph 02 */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 144.444% */
+  letter-spacing: -0.3px;
+}
+
+.shop-div {
+  padding-left: 12px;
+}
+
+// .shop-div {
+//   margin-left: 105px;
+// }

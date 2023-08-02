@@ -22,7 +22,7 @@ function Product(props) {
     auth.userInfo.data.role == "admin"
   ) {
     return (
-      <div className="card col-3-5 mx-1 mb-4 border-0">
+      <div className="card col-md-3 col-sm-4 col-10 mx-1 mb-4 border-0">
         <Link to={`/products/${props.id}`} className="btn text-start p-0">
           <img
             src={props.image}
@@ -55,7 +55,7 @@ function Product(props) {
     );
   } else {
     return (
-      <div className="card col-3-5 mx-1 mb-4 border-0">
+      <div className="card col-md-3 col-sm-4 col-10 mx-1 mb-4 border-0">
         <Link to={`/products/${props.id}`} className="btn text-start p-0">
           <img
             src={props.image}
