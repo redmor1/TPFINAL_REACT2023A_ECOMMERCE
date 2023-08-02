@@ -32,8 +32,8 @@ function CategoryList(props) {
   });
 
   return (
-    <>
-      <h2 className="categories-title fw-bold mb-3">Categories</h2>
+    <div className="mb-4">
+      <p className="filters-title fw-bold">Categories</p>
       <ul className="d-flex flex-column p-0">
         {isLoading && <Loader />}
         {isError && <Error />}
@@ -50,7 +50,7 @@ function CategoryList(props) {
             );
           })}
       </ul>
-    </>
+    </div>
   );
 }
 

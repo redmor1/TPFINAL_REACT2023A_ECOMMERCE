@@ -49,10 +49,11 @@ $body-bg: #eff2f6;
   letter-spacing: $ls-040;
 }
 
-.categories-title {
+.filters-title {
   color: black;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: $ls-040;
+  margin-bottom: 10px;
 }
 
 .form-check-label {
@@ -115,3 +116,12 @@ $body-bg: #eff2f6;
 
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.button-categories {
+  background-color: $body-bg;
+  border: 0;
+  font-size: 14px;
+}
+
+.button-categories.active {
+}
